@@ -1,0 +1,98 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.traffic-scene {
+    width: 400px;
+    height: 300px;
+    background-color: #eee;
+    position: relative;
+    border: 2px solid #333;
+    overflow: hidden; /* Prevent cars from going outside the scene */
+}
+
+.traffic-lights {
+    width: 100px;
+    background: black;
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.light {
+    width: 30px; /* Smaller lights */
+    height: 30px; /* Smaller lights */
+    background: gray;
+    border: 3px solid #333;
+    border-radius: 50%;
+    margin: 5px 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.light.red.active {
+    background: red;
+    box-shadow: 0 0 10px red;
+}
+
+.light.yellow.active {
+    background: yellow;
+    box-shadow: 0 0 10px yellow;
+}
+
+.light.green.active {
+    background: green;
+    box-shadow: 0 0 10px green;
+}
+
+.road {
+    background-color: gray;
+    position: absolute;
+    z-index: 0;
+}
+
+.road.horizontal {
+    width: 300px;
+    height: 20px;
+    top: 150px; /* Adjusted position */
+    left: 50px; /* Adjusted position */
+}
+
+.road.vertical {
+    width: 20px;
+    height: 200px;
+    top: 50px; /* Adjusted position */
+    left: 200px; /* Adjusted position */
+}
+
+.car {
+    width: 20px;
+    height: 10px;
+    background-color: blue;
+    position: absolute;
+    z-index: 1;
+}
+
+.game-info {
+    margin-top: 20px;
+    text-align: center;
+}
