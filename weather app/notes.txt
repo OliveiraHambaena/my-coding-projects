@@ -1,0 +1,4 @@
+fontawesome icons: <script src="https://ki.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>/
+font: <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+api key: 79eafe97a7dc92c797cbb178c1177a60
+api url: https://api.openweathermap.org/data/2.5/weather?q=weather=${city}&units=metric&appid=${APIKey}

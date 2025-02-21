@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <title>Weather App </title>
+    </head>
+<body>
+    
+    <div class="container">
+        <div class="search-box">
+            <img src="icons/location-dot.svg" alt="Location icon" style="height: 30px;width: 30px;">
+            <input type="text" placeholder="Enter your location">
+
+                <button>
+                <img src="icons/magnifying-glass.svg" alt="Search icon" style="height: 25px;width: 25px;">
+            </button>
+            
+    </div>
+
+    <div class="not-found">
+        <img src="images/404.png">
+        <p>Oops! Invalid location</p>
+    </div>
+
+    <div class="weather-box">
+        <img src="" alt="">
+        <p class="temperature"></p>
+        <p class="description"></p>
+    </div>
+
+    <div class="weather-details">
+        <div class="humidity"></div>
+        <img src="icons/water.svg" alt="Humidity icon" style="height: 30px;width: 30px;">
+        <div class="text">
+            <span></span>
+            <p>humidity</p>
+        </div>
+        </div>
+
+        <div class="wind"></div>
+        <img src="icons/wind.svg" alt="Wind icon" style="height: 30px;width: 30px;">
+        <div class="text">
+            <span></span>
+            <p>wind speed</p>
+        </div>
+    </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
