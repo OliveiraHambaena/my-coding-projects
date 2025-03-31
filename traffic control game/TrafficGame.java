@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private Timer gameTimer;
+    private Timer difficultyTimer; // Timer to increase difficulty over time
     private int playerX = 250;
     private int playerY = 400;
     private int score = 0;
@@ -20,6 +21,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private JButton startButton, restartButton;
 
     private int obstacleSpeed = 5; // Initial speed of obstacles
+    private int spawnChance = 100; // Initial spawn chance (1 in 100)
 
     public TrafficGame() {
         setLayout(null); // For absolute positioning
@@ -52,16 +54,23 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         playerY = 400;
         obstacles.clear();
         obstacleSpeed = 5; // Reset obstacle speed
+        spawnChance = 100; // Reset spawn chance
         startButton.setVisible(false);
         restartButton.setVisible(false);
 
-        // Stop existing timer if any
+        // Stop existing timers if any
         if (gameTimer != null) gameTimer.stop();
+        if (difficultyTimer != null) difficultyTimer.stop();
 
-        gameTimer = new Timer(16, this); // ~60fps
+        // Game timer (~60fps)
+        gameTimer = new Timer(16, this);
         gameTimer.start();
-        System.out.println("Game timer started."); // Debugging
 
+        // Difficulty timer (adjusts every 5 seconds)
+        difficultyTimer = new Timer(5000, e -> increaseDifficulty());
+        difficultyTimer.start();
+
+        System.out.println("Game timer started."); // Debugging
         requestFocusInWindow(); // Crucial for key listeners
     }
 
@@ -73,7 +82,17 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private void stopGame() {
         isGameRunning = false;
         if (gameTimer != null) gameTimer.stop();
+        if (difficultyTimer != null) difficultyTimer.stop();
         restartButton.setVisible(true);
+    }
+
+    private void increaseDifficulty() {
+        // Increase obstacle speed
+        obstacleSpeed++;
+        // Decrease spawn chance (minimum value is 10)
+        spawnChance = Math.max(10, spawnChance - 10);
+
+        System.out.println("Difficulty increased: obstacleSpeed=" + obstacleSpeed + ", spawnChance=1 in " + spawnChance);
     }
 
     @Override
@@ -126,12 +145,6 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             if (obstacle.y > ROAD_HEIGHT) {
                 iterator.remove();
                 score += 10; // Increase score for avoiding an obstacle
-
-                // Increase obstacle speed every 50 points
-                if (score % 50 == 0) {
-                    obstacleSpeed++;
-                    System.out.println("Obstacle speed increased to: " + obstacleSpeed); // Debugging
-                }
             }
 
             // Check for collision
@@ -141,7 +154,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         }
 
         // Spawn new obstacles
-        if (random.nextInt(100) < 2) { // 2% chance to spawn a new obstacle
+        if (random.nextInt(spawnChance) < 2) { // Dynamic spawn chance
             int obstacleX = random.nextInt(ROAD_WIDTH - 50);
             obstacles.add(new Rectangle(obstacleX, 0, 50, 30));
         }
