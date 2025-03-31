@@ -19,6 +19,8 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     private JButton startButton, restartButton;
 
+    private int obstacleSpeed = 5; // Initial speed of obstacles
+
     public TrafficGame() {
         setLayout(null); // For absolute positioning
 
@@ -49,6 +51,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         playerX = 250;
         playerY = 400;
         obstacles.clear();
+        obstacleSpeed = 5; // Reset obstacle speed
         startButton.setVisible(false);
         restartButton.setVisible(false);
 
@@ -117,12 +120,18 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         Iterator<Rectangle> iterator = obstacles.iterator();
         while (iterator.hasNext()) {
             Rectangle obstacle = iterator.next();
-            obstacle.y += 5; // Move obstacle down
+            obstacle.y += obstacleSpeed; // Move obstacle down based on speed
 
             // Remove obstacle if it goes off-screen
             if (obstacle.y > ROAD_HEIGHT) {
                 iterator.remove();
                 score += 10; // Increase score for avoiding an obstacle
+
+                // Increase obstacle speed every 50 points
+                if (score % 50 == 0) {
+                    obstacleSpeed++;
+                    System.out.println("Obstacle speed increased to: " + obstacleSpeed); // Debugging
+                }
             }
 
             // Check for collision
