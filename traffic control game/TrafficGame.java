@@ -10,6 +10,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private Timer difficultyTimer; // Timer to increase difficulty over time
     private int playerX = 250;
     private int playerY = 400;
+    private int playerVelocityX = 0; // Horizontal velocity of the car
     private int score = 0;
     private boolean isGameRunning = false;
     private final int ROAD_WIDTH = 600;
@@ -52,6 +53,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         score = 0;
         playerX = 250;
         playerY = 400;
+        playerVelocityX = 0; // Reset velocity
         obstacles.clear();
         obstacleSpeed = 5; // Reset obstacle speed
         spawnChance = 100; // Reset spawn chance
@@ -135,6 +137,13 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         if (!isGameRunning) return;
 
+        // Update player position based on velocity
+        playerX += playerVelocityX;
+
+        // Prevent the player from moving out of bounds
+        if (playerX < 0) playerX = 0;
+        if (playerX > ROAD_WIDTH - 50) playerX = ROAD_WIDTH - 50;
+
         // Move obstacles
         Iterator<Rectangle> iterator = obstacles.iterator();
         while (iterator.hasNext()) {
@@ -166,9 +175,17 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (!isGameRunning) return;
 
-        int speed = 10;
-        if (e.getKeyCode() == KeyEvent.VK_LEFT && playerX > 0) playerX -= speed;
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT && playerX < ROAD_WIDTH - 50) playerX += speed;
+        // Set velocity based on key press
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) playerVelocityX = -10;
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) playerVelocityX = 10;
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // Stop movement when the key is released
+        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            playerVelocityX = 0;
+        }
     }
 
     public static void main(String[] args) {
@@ -185,5 +202,4 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     }
 
     @Override public void keyTyped(KeyEvent e) {}
-    @Override public void keyReleased(KeyEvent e) {}
 }
