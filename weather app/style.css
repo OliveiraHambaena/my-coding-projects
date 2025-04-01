@@ -24,66 +24,106 @@ body {
     transition: 0.6s ease-out;
 }
 
-/* Updated search box styling */
+.api-counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 12px;
+    z-index: 1;
+}
+
 .search-box {
     width: 100%;
-    height: 50px;
+    height: min-content;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f0f4f8; /* Light background for better contrast */
-    border-radius: 25px; /* Rounded corners */
-    padding: 0 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    position: relative;
 }
 
 .search-box input {
     color: #06283D;
     width: 80%;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 500;
+    padding-left: 32px;
     border: none;
     outline: none;
-    background: transparent;
-    padding-left: 30px;
 }
 
 .search-box input::placeholder {
-    font-size: 16px;
-    font-weight: 400;
-    color: #9aa5b1; /* Subtle placeholder color */
+    font-size: 20px;
+    font-weight: 500;
+    color: #06283D;
     text-transform: capitalize;
 }
 
 .search-box button {
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    background: #06283D; /* Dark background for contrast */
+    width: 50px;
+    height: 50px;
+    color: #06283D;
+    background: #dff6ff;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s ease;
+    font-size: 22px;
+    transition: 0.4s ease;
     border: none;
-}
-
-.search-box button img {
-    width: 20px;
-    filter: invert(1); /* Makes the icon white */
+    outline: none;
 }
 
 .search-box button:hover {
-    background: #1363DF; /* Slightly lighter blue on hover */
+    color: #fff;
+    background: #06283D;
+}
+
+.search-box img {
+    width: 25px;
 }
 
 .location-icon {
     position: absolute;
-    left: 10px;
-    width: 20px;
-    height: 20px;
-    filter: invert(0.5); /* Subtle color for the location icon */
+}
+
+.suggestions-box {
+    position: absolute;
+    width: calc(100% - 64px);
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: none;
+    margin-top: 5px;
+}
+
+.suggestion {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion:hover {
+    background-color: #f5f5f5;
+}
+
+.suggestion strong {
+    font-weight: 600;
+    color: #06283D;
+}
+
+.suggestion span {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.suggestion:last-child {
+    border-bottom: none;
 }
 
 .weather-box {
@@ -114,6 +154,13 @@ body {
     font-size: 22px;
     font-weight: 500;
     text-transform: capitalize;
+}
+
+.weather-box .cache-notice {
+    color: #666;
+    font-size: 12px;
+    margin-top: 5px;
+    font-style: italic;
 }
 
 .weather-details {
@@ -196,74 +243,6 @@ body {
     }
 }
 
-.suggestions-box {
-    position: absolute;
-    width: calc(100% - 64px);
-    max-height: 200px;
-    overflow-y: auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 10;
-    display: none;
-    margin-top: 5px;
-}
-
-.suggestion {
-    padding: 10px 15px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-}
-
-.suggestion:hover {
-    background-color: #f5f5f5;
-}
-
-.suggestion:last-child {
-    border-bottom: none;
-}
-
-/* Add these to your existing CSS */
-.suggestions-box {
-    position: absolute;
-    width: calc(100% - 64px);
-    max-height: 200px;
-    overflow-y: auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 100;
-    display: none;
-    margin-top: 5px;
-}
-
-.suggestion {
-    padding: 10px 15px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-}
-
-.suggestion:hover {
-    background-color: #f5f5f5;
-}
-
-.suggestion strong {
-    font-weight: 600;
-    color: #06283D;
-}
-
-.suggestion span {
-    font-size: 0.8em;
-    color: #666;
-}
-
-.suggestion:last-child {
-    border-bottom: none;
-}
-
-/* Loading spinner */
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
