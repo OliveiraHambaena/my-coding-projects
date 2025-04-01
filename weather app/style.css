@@ -24,51 +24,66 @@ body {
     transition: 0.6s ease-out;
 }
 
+/* Updated search box styling */
 .search-box {
     width: 100%;
-    height: min-content;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: #f0f4f8; /* Light background for better contrast */
+    border-radius: 25px; /* Rounded corners */
+    padding: 0 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    position: relative;
 }
 
 .search-box input {
     color: #06283D;
     width: 80%;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
-    padding-left: 32px;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 30px;
 }
 
 .search-box input::placeholder {
-    font-size: 20px;
-    font-weight: 500;
-    color: #06283D;
+    font-size: 16px;
+    font-weight: 400;
+    color: #9aa5b1; /* Subtle placeholder color */
     text-transform: capitalize;
 }
 
 .search-box button {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
-    color: #06283D;
-    background: #dff6ff;
+    width: 40px;
+    height: 40px;
+    background: #06283D; /* Dark background for contrast */
     border-radius: 50%;
-    font-size: 22px;
-    transition: 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.search-box button img {
+    width: 20px;
+    filter: invert(1); /* Makes the icon white */
 }
 
 .search-box button:hover {
-    color: #fff;
-    background: #06283D;
-}
-
-.search-box img {
-    width: 25px;
+    background: #1363DF; /* Slightly lighter blue on hover */
 }
 
 .location-icon {
     position: absolute;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    filter: invert(0.5); /* Subtle color for the location icon */
 }
 
 .weather-box {
@@ -179,4 +194,80 @@ body {
         scale: 1;
         opacity: 1;
     }
+}
+
+.suggestions-box {
+    position: absolute;
+    width: calc(100% - 64px);
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: none;
+    margin-top: 5px;
+}
+
+.suggestion {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.suggestion:hover {
+    background-color: #f5f5f5;
+}
+
+.suggestion:last-child {
+    border-bottom: none;
+}
+
+/* Add these to your existing CSS */
+.suggestions-box {
+    position: absolute;
+    width: calc(100% - 64px);
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+    display: none;
+    margin-top: 5px;
+}
+
+.suggestion {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion:hover {
+    background-color: #f5f5f5;
+}
+
+.suggestion strong {
+    font-weight: 600;
+    color: #06283D;
+}
+
+.suggestion span {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.suggestion:last-child {
+    border-bottom: none;
+}
+
+/* Loading spinner */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.search-btn img[src*="spinner.svg"] {
+    animation: spin 1s linear infinite;
 }
