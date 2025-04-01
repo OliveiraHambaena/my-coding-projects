@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Configuration
-    const API_KEY = 'bmSlnWzmJmo6o4UJVNzDcPBX4F3h3r8s';
+    const API_KEY = 'fySh7TZvcdYHOGr94wydR4p1vVoAeA0w';
     const BASE_URL = 'https://dataservice.accuweather.com';
     const DAILY_LIMIT = 50;
     const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
