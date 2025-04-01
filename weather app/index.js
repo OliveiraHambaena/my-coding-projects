@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Show suggestions dropdown
-    function showSuggestions(cities) {
+    async function showSuggestions(cities) {
         suggestionsBox.innerHTML = '';
         if (!cities || cities.length === 0) return;
-        
+
         cities.slice(0, 5).forEach(city => {
             const suggestion = document.createElement('div');
             suggestion.className = 'suggestion';
@@ -155,10 +155,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 <strong>${city.LocalizedName}</strong>
                 <span>${city.AdministrativeArea.LocalizedName}, ${city.Country.LocalizedName}</span>
             `;
-            suggestion.addEventListener('click', () => {
+            suggestion.addEventListener('click', async () => {
                 searchInput.value = city.LocalizedName;
                 suggestionsBox.style.display = 'none';
-                fetchWeather(city.Key, city.LocalizedName);
+
+                try {
+                    const weatherData = await fetchWeather(city.Key);
+                    updateWeatherUI(weatherData[0], city.LocalizedName);
+                } catch (error) {
+                    handleWeatherError(error, city.Key);
+                }
             });
             suggestionsBox.appendChild(suggestion);
         });
@@ -262,25 +268,28 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchSuggestions(query);
     }, 300));
 
-    searchBtn.addEventListener('click', function() {
+    searchBtn.addEventListener('click', async function() {
         const city = searchInput.value.trim();
         if (!city) return;
-        
+
         suggestionsBox.style.display = 'none';
-        
-        // First try to get location key
-        fetchWithLimit(
-            `${BASE_URL}/locations/v1/cities/search?apikey=${API_KEY}&q=${city}&language=en-us`,
-            `search_${city}`
-        )
-        .then(cities => {
+
+        try {
+            // First try to get location key
+            const cities = await fetchWithLimit(
+                `${BASE_URL}/locations/v1/cities/search?apikey=${API_KEY}&q=${city}&language=en-us`,
+                `search_${city}`
+            );
+
             if (cities && cities.length > 0) {
-                fetchWeather(cities[0].Key, cities[0].LocalizedName);
+                const weatherData = await fetchWeather(cities[0].Key);
+                updateWeatherUI(weatherData[0], cities[0].LocalizedName);
             } else {
-                throw new Error('API_ERROR_404');
+                throw new Error('Location not found');
             }
-        })
-        .catch(error => handleWeatherError(error, ''));
+        } catch (error) {
+            handleWeatherError(error, '');
+        }
     });
 
     searchInput.addEventListener('keypress', function(e) {
