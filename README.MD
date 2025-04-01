@@ -22,4 +22,4 @@ This repository contains a collection of coding projects showcasing various skil
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ollym/my-coding-projects.git
+   git https://github.com/OliveiraHambaena/my-coding-projects.git
