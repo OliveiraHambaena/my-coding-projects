@@ -18,6 +18,11 @@ This repository contains a collection of coding projects showcasing various skil
    - Technologies: HTML, CSS, JavaScript.
    - Features: Search by location, weather details, and responsive design.
 
+4. **Login and Registration System**
+   - A simple system for user registration and login.
+   - Technologies: PHP, MySQL, HTML, CSS, JavaScript.
+   - Features: User registration, secure password hashing, session-based authentication, and a protected homepage.
+
 ## How to Use
 
 1. Clone the repository:
