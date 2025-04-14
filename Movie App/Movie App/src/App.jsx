@@ -3,16 +3,13 @@ import './App.css'
 import MovieCard from "./components/MovieCard";
 
 function App() {
-    const movie = {
-        url: "poster.jpg",
-        title: "Inception",
-        release_date: "2010"
-    };
+    return(
+        <>
+        <MovieCard movie={{title: "Tim's Film", release_date: "2024"}}/>
+        <MovieCard movie={{title: "joe's Film", release_date: "2012"}}/>
+        </>
 
-    return (
-        <div className="App">
-            <MovieCard movie={movie} />
-        </div>
+    
     );
 }
 
