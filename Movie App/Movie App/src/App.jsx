@@ -1,15 +1,13 @@
-import React from "react";
-import './App.css'
-import MovieCard from "./components/MovieCard";
+import "./App.css"
+import Home from "./Pages/Home"  
 
 function App() {
+    
     return(
         <>
-        <MovieCard movie={{title: "Tim's Film", release_date: "2024"}}/>
-        <MovieCard movie={{title: "joe's Film", release_date: "2012"}}/>
+        <Home/>
         </>
 
-    
     );
 }
 
