@@ -3,6 +3,7 @@ import Favourites from "./Pages/Favourites";
 import Home from "./Pages/Home";
 import { Routes, Route } from "react-router-dom"; 
 import NavBar from "./components/NavBar";
+import { MovieProvider } from "./contexts/MovieContext";
 
 function App() {
     return (
