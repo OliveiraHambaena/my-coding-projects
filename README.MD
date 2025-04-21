@@ -23,8 +23,20 @@ This repository contains a collection of coding projects showcasing various skil
    - Technologies: PHP, MySQL, HTML, CSS, JavaScript.
    - Features: User registration, secure password hashing, session-based authentication, and a protected homepage.
 
+5. **Movie App**
+   - A React-based movie application that allows users to browse popular movies, search for specific movies, and manage a list of their favorite movies.
+   - Technologies: React, Vite, React Router, TMDb API, CSS.
+   - Features:
+     - Browse popular movies fetched from TMDb.
+     - Search for movies by title.
+     - Add movies to a favorites list and view them on a dedicated page.
+     - Responsive design optimized for various screen sizes.
+
 ## How to Use
 
 1. Clone the repository:
    ```bash
-   git https://github.com/OliveiraHambaena/my-coding-projects.git
+   git clone https://github.com/OliveiraHambaena/my-coding-projects.git
+   ```
+
+2. Navigate to the project folder of your choice and follow the instructions in its respective `README.md` file.
