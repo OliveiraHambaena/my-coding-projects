@@ -36,6 +36,9 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     // Add a variable to store the high score
     private int highScore = 0;
 
+    // Add a variable to track if the game is paused
+    private boolean isGamePaused = false;
+
     public TrafficGame(JFrame frame) {
         this.frame = frame; // Store the frame reference
         setLayout(null); // For absolute positioning
@@ -48,18 +51,29 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
         // Add Restart menu item
         JMenuItem restartMenuItem = new JMenuItem("Restart");
-        restartMenuItem.addActionListener(e -> restartGame());
+        restartMenuItem.addActionListener(e -> {
+            pauseGame(); // Pause the game when the menu is opened
+            restartGame();
+        });
         gameMenu.add(restartMenuItem);
 
         // Add View High Score menu item
         JMenuItem highScoreMenuItem = new JMenuItem("View High Score");
-        highScoreMenuItem.addActionListener(e -> JOptionPane.showMessageDialog(
-            frame,
-            "High Score: " + highScore,
-            "High Score",
-            JOptionPane.INFORMATION_MESSAGE
-        ));
+        highScoreMenuItem.addActionListener(e -> {
+            pauseGame(); // Pause the game when the menu is opened
+            JOptionPane.showMessageDialog(
+                frame,
+                "High Score: " + highScore,
+                "High Score",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        });
         gameMenu.add(highScoreMenuItem);
+
+        // Add Pause/Resume menu item
+        JMenuItem pauseMenuItem = new JMenuItem("Pause/Resume");
+        pauseMenuItem.addActionListener(e -> togglePauseGame());
+        gameMenu.add(pauseMenuItem);
 
         // Add the Game menu to the menu bar
         menuBar.add(gameMenu);
@@ -98,6 +112,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         spawnChance = 100; // Reset spawn chance
         lives = 3; // Reset lives
         isUnstoppable = false; // Reset unstoppable mode
+        isGamePaused = false; // Reset paused state
         startButton.setVisible(false);
         restartButton.setVisible(false);
 
@@ -216,7 +231,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!isGameRunning) return;
+        if (!isGameRunning || isGamePaused) return;
 
         // Get the current panel dimensions
         int panelWidth = getWidth();
@@ -301,6 +316,42 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         unstoppableTimer.start();
     }
 
+    // Add a method to toggle pause
+    private void togglePauseGame() {
+        if (!isGameRunning) return;
+
+        isGamePaused = !isGamePaused;
+        if (isGamePaused) {
+            System.out.println("Game paused.");
+            if (gameTimer != null) gameTimer.stop();
+            if (difficultyTimer != null) difficultyTimer.stop();
+        } else {
+            System.out.println("Game resumed.");
+            if (gameTimer != null) gameTimer.start();
+            if (difficultyTimer != null) difficultyTimer.start();
+        }
+    }
+
+    // Add a method to pause the game
+    private void pauseGame() {
+        if (!isGameRunning || isGamePaused) return;
+
+        isGamePaused = true;
+        System.out.println("Game paused.");
+        if (gameTimer != null) gameTimer.stop();
+        if (difficultyTimer != null) difficultyTimer.stop();
+    }
+
+    // Add a method to resume the game
+    private void resumeGame() {
+        if (!isGameRunning || !isGamePaused) return;
+
+        isGamePaused = false;
+        System.out.println("Game resumed.");
+        if (gameTimer != null) gameTimer.start();
+        if (difficultyTimer != null) difficultyTimer.start();
+    }
+
     // Add a method to toggle full-screen mode
     private void toggleFullScreen() {
         GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -320,14 +371,43 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         }
     }
 
-    // Update keyPressed to handle F11 for toggling full-screen
+    // Update keyPressed to handle Enter key for menu options
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_F11) {
             toggleFullScreen();
         }
 
-        if (!isGameRunning) return;
+        // Handle Enter key for starting or restarting the game
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!isGameRunning) {
+                if (startButton.isVisible()) {
+                    startButton.doClick(); // Start the game
+                } else if (restartButton.isVisible()) {
+                    restartButton.doClick(); // Restart the game
+                }
+            }
+        }
+
+        // Handle Space key for pausing/unpausing the game
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            if (isGameRunning) {
+                if (isGamePaused) {
+                    // Resume the game immediately after closing the dialog
+                    JOptionPane.showMessageDialog(
+                        frame,
+                        "Game Paused\nPress OK to resume.",
+                        "Pause Menu",
+                        JOptionPane.INFORMATION_MESSAGE
+                    );
+                    togglePauseGame(); // Resume the game after the dialog is closed
+                } else {
+                    togglePauseGame(); // Pause the game
+                }
+            }
+        }
+
+        if (!isGameRunning || isGamePaused) return;
 
         // Dynamically adjust movement speed based on score
         int baseSpeed = 10; // Base speed
