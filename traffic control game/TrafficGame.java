@@ -233,9 +233,14 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
         if (!isGameRunning) return;
 
+        // Dynamically adjust movement speed based on score
+        int baseSpeed = 10; // Base speed
+        int speedIncrement = score / 500; // Increase speed every 500 points
+        int movementSpeed = baseSpeed + speedIncrement;
+
         // Set velocity based on key press
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) playerVelocityX = -10;
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) playerVelocityX = 10;
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) playerVelocityX = -movementSpeed;
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) playerVelocityX = movementSpeed;
     }
 
     @Override
