@@ -29,6 +29,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private boolean isFullScreen = false;
     private JFrame frame; // Reference to the main frame
 
+    // Add a variable to track unstoppable mode
+    private boolean isUnstoppable = false;
+    private Timer unstoppableTimer; // Timer to deactivate unstoppable mode
+
     public TrafficGame(JFrame frame) {
         this.frame = frame; // Store the frame reference
         setLayout(null); // For absolute positioning
@@ -64,6 +68,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         obstacleSpeed = 5; // Reset obstacle speed
         spawnChance = 100; // Reset spawn chance
         lives = 3; // Reset lives
+        isUnstoppable = false; // Reset unstoppable mode
         startButton.setVisible(false);
         restartButton.setVisible(false);
 
@@ -131,8 +136,12 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             g.fillRect(playerX, playerY, 50, 30);
 
             // Draw obstacles
-            g.setColor(Color.RED);
             for (Rectangle obstacle : obstacles) {
+                if (obstacle.width == 40 && obstacle.height == 40) {
+                    g.setColor(Color.YELLOW); // Gold obstacle
+                } else {
+                    g.setColor(Color.RED); // Regular obstacle
+                }
                 g.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
             }
 
@@ -143,6 +152,13 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
             // Draw lives
             g.drawString("Lives: " + lives, 20, 60);
+
+            // Indicate unstoppable mode
+            if (isUnstoppable) {
+                g.setColor(Color.YELLOW);
+                g.setFont(new Font("Arial", Font.BOLD, 20));
+                g.drawString("UNSTOPPABLE!", panelWidth / 2 - 80, 30);
+            }
         }
 
         // Game over screen
@@ -197,6 +213,18 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
             // Check for collision
             if (obstacle.intersects(new Rectangle(playerX, playerY, 50, 30))) {
+                if (isUnstoppable) {
+                    iterator.remove(); // Remove the obstacle without losing lives
+                    continue;
+                }
+
+                // Check if it's a gold obstacle
+                if (obstacle.width == 40 && obstacle.height == 40) { // Gold obstacle dimensions
+                    activateUnstoppableMode();
+                    iterator.remove();
+                    continue;
+                }
+
                 iterator.remove(); // Remove the obstacle
                 lives--; // Decrement lives
                 System.out.println("Collision! Lives remaining: " + lives);
@@ -210,10 +238,34 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         // Spawn new obstacles
         if (random.nextInt(spawnChance) < 2) { // Dynamic spawn chance
             int obstacleX = random.nextInt(panelWidth - 40); // Adjust for smaller obstacle width
-            obstacles.add(new Rectangle(obstacleX, 0, 40, 20)); // Smaller obstacle size
+            obstacles.add(new Rectangle(obstacleX, 0, 40, 20)); // Regular obstacle size
+        }
+
+        // Spawn a rare gold obstacle
+        if (random.nextInt(500) == 0) { // 1 in 500 chance
+            int goldObstacleX = random.nextInt(panelWidth - 40);
+            obstacles.add(new Rectangle(goldObstacleX, 0, 40, 40)); // Gold obstacle size
         }
 
         repaint();
+    }
+
+    private void activateUnstoppableMode() {
+        isUnstoppable = true;
+        System.out.println("Unstoppable mode activated!");
+
+        // Stop any existing unstoppable timer
+        if (unstoppableTimer != null) {
+            unstoppableTimer.stop();
+        }
+
+        // Start a new timer for 15 seconds
+        unstoppableTimer = new Timer(15000, e -> {
+            isUnstoppable = false;
+            System.out.println("Unstoppable mode deactivated!");
+        });
+        unstoppableTimer.setRepeats(false);
+        unstoppableTimer.start();
     }
 
     // Add a method to toggle full-screen mode
