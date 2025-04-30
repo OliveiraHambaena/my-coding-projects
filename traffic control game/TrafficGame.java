@@ -13,8 +13,6 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private int playerVelocityX = 0; // Horizontal velocity of the car
     private int score = 0;
     private boolean isGameRunning = false;
-    private final int ROAD_WIDTH = 600;
-    private final int ROAD_HEIGHT = 500;
 
     private ArrayList<Rectangle> obstacles; // List of obstacles
     private Random random;
@@ -27,7 +25,12 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     // Add a variable to track lives
     private int lives = 3; // Player starts with 3 lives
 
-    public TrafficGame() {
+    // Add a variable to track full-screen mode
+    private boolean isFullScreen = false;
+    private JFrame frame; // Reference to the main frame
+
+    public TrafficGame(JFrame frame) {
+        this.frame = frame; // Store the frame reference
         setLayout(null); // For absolute positioning
 
         // Start Button
@@ -105,9 +108,13 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        // Get the current panel dimensions
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
+
         // Draw road
         g.setColor(Color.DARK_GRAY);
-        g.fillRect(0, 0, ROAD_WIDTH, ROAD_HEIGHT);
+        g.fillRect(0, 0, panelWidth, panelHeight);
 
         if (isGameRunning) {
             // Draw player car
@@ -132,12 +139,12 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         // Game over screen
         if (!isGameRunning && score > 0) {
             g.setColor(new Color(255, 255, 255, 200));
-            g.fillRect(0, 0, getWidth(), getHeight());
+            g.fillRect(0, 0, panelWidth, panelHeight);
 
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            g.drawString("GAME OVER", 200, 150);
-            g.drawString("Final Score: " + score, 200, 200);
+            g.drawString("GAME OVER", panelWidth / 2 - 100, panelHeight / 2 - 50);
+            g.drawString("Final Score: " + score, panelWidth / 2 - 100, panelHeight / 2);
         }
     }
 
@@ -145,12 +152,16 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         if (!isGameRunning) return;
 
+        // Get the current panel dimensions
+        int panelWidth = getWidth();
+        int panelHeight = getHeight();
+
         // Update player position based on velocity
         playerX += playerVelocityX;
 
         // Prevent the player from moving out of bounds
         if (playerX < 0) playerX = 0;
-        if (playerX > ROAD_WIDTH - 50) playerX = ROAD_WIDTH - 50;
+        if (playerX > panelWidth - 50) playerX = panelWidth - 50;
 
         // Move obstacles
         Iterator<Rectangle> iterator = obstacles.iterator();
@@ -159,7 +170,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             obstacle.y += obstacleSpeed; // Move obstacle down based on speed
 
             // Remove obstacle if it goes off-screen
-            if (obstacle.y > ROAD_HEIGHT) {
+            if (obstacle.y > panelHeight) {
                 iterator.remove();
                 score += 10; // Increase score for avoiding an obstacle
             }
@@ -178,15 +189,39 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
         // Spawn new obstacles
         if (random.nextInt(spawnChance) < 2) { // Dynamic spawn chance
-            int obstacleX = random.nextInt(ROAD_WIDTH - 50);
+            int obstacleX = random.nextInt(panelWidth - 50);
             obstacles.add(new Rectangle(obstacleX, 0, 50, 30));
         }
 
         repaint();
     }
 
+    // Add a method to toggle full-screen mode
+    private void toggleFullScreen() {
+        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        if (isFullScreen) {
+            // Switch to windowed mode
+            frame.dispose();
+            frame.setUndecorated(false);
+            frame.setVisible(true);
+            frame.setSize(600, 500); // Restore original size
+            isFullScreen = false;
+        } else {
+            // Switch to full-screen mode
+            frame.dispose();
+            frame.setUndecorated(true);
+            device.setFullScreenWindow(frame);
+            isFullScreen = true;
+        }
+    }
+
+    // Update keyPressed to handle F11 for toggling full-screen
     @Override
     public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_F11) {
+            toggleFullScreen();
+        }
+
         if (!isGameRunning) return;
 
         // Set velocity based on key press
@@ -202,13 +237,17 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    // Update the main method to set the frame to full-screen size
     public static void main(String[] args) {
         JFrame frame = new JFrame("Traffic Avoidance Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 500);
-        frame.setResizable(false);
+        frame.setResizable(true);
 
-        TrafficGame game = new TrafficGame();
+        // Get screen dimensions
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize.width, screenSize.height);
+
+        TrafficGame game = new TrafficGame(frame);
         frame.add(game);
 
         frame.setVisible(true);
