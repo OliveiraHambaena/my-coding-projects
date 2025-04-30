@@ -112,6 +112,15 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         int panelWidth = getWidth();
         int panelHeight = getHeight();
 
+        // Dynamically center the buttons
+        int buttonWidth = 100;
+        int buttonHeight = 40;
+        int buttonX = (panelWidth - buttonWidth) / 2;
+        int buttonY = (panelHeight - buttonHeight) / 2;
+
+        startButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
+        restartButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
+
         // Draw road
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, panelWidth, panelHeight);
