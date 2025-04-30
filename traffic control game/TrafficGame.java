@@ -173,6 +173,9 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         int panelWidth = getWidth();
         int panelHeight = getHeight();
 
+        // Dynamically position the player one-third from the bottom
+        playerY = (int) (panelHeight * 2 / 3.0); // Move the player to one-third from the bottom
+
         // Update player position based on velocity
         playerX += playerVelocityX;
 
