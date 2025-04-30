@@ -24,6 +24,9 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private int obstacleSpeed = 5; // Initial speed of obstacles
     private int spawnChance = 100; // Initial spawn chance (1 in 100)
 
+    // Add a variable to track lives
+    private int lives = 3; // Player starts with 3 lives
+
     public TrafficGame() {
         setLayout(null); // For absolute positioning
 
@@ -57,6 +60,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         obstacles.clear();
         obstacleSpeed = 5; // Reset obstacle speed
         spawnChance = 100; // Reset spawn chance
+        lives = 3; // Reset lives
         startButton.setVisible(false);
         restartButton.setVisible(false);
 
@@ -120,6 +124,9 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial", Font.BOLD, 20));
             g.drawString("Score: " + score, 20, 30);
+
+            // Draw lives
+            g.drawString("Lives: " + lives, 20, 60);
         }
 
         // Game over screen
@@ -130,6 +137,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 30));
             g.drawString("GAME OVER", 200, 150);
+            g.drawString("Final Score: " + score, 200, 200);
         }
     }
 
@@ -158,7 +166,13 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
             // Check for collision
             if (obstacle.intersects(new Rectangle(playerX, playerY, 50, 30))) {
-                stopGame();
+                iterator.remove(); // Remove the obstacle
+                lives--; // Decrement lives
+                System.out.println("Collision! Lives remaining: " + lives);
+
+                if (lives <= 0) {
+                    stopGame(); // End the game if no lives are left
+                }
             }
         }
 
