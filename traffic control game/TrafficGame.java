@@ -78,6 +78,31 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         // Add the Game menu to the menu bar
         menuBar.add(gameMenu);
 
+        // Create the Help menu
+        JMenu helpMenu = new JMenu("Help");
+
+        // Add Instructions menu item
+        JMenuItem instructionsMenuItem = new JMenuItem("Instructions");
+        instructionsMenuItem.addActionListener(e -> {
+            pauseGame(); // Pause the game when the menu is opened
+            JOptionPane.showMessageDialog(
+                frame,
+                "Instructions:\n" +
+                "- Use LEFT and RIGHT arrow keys to move the car.\n" +
+                "- Avoid red obstacles.\n" +
+                "- Collect gold obstacles for unstoppable mode (15 seconds).\n" +
+                "- Press SPACE to pause/unpause the game.\n" +
+                "- Press ENTER to start or restart the game.\n" +
+                "- Press F11 to toggle full-screen mode.",
+                "How to Play",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        });
+        helpMenu.add(instructionsMenuItem);
+
+        // Add the Help menu to the menu bar
+        menuBar.add(helpMenu);
+
         // Set the menu bar to the frame
         frame.setJMenuBar(menuBar);
 
