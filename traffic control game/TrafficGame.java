@@ -154,6 +154,14 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             g.setFont(new Font("Arial", Font.BOLD, 30));
             g.drawString("GAME OVER", panelWidth / 2 - 100, panelHeight / 2 - 100); // Move text slightly above the center
             g.drawString("Final Score: " + score, panelWidth / 2 - 100, panelHeight / 2 - 50); // Move score text slightly above the button
+
+
+            // Add personal information at the bottom
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("Arial", Font.PLAIN, 15));
+            g.drawString("Made by Olly", panelWidth / 2 - 50, panelHeight - 60); // 60px from the bottom
+            g.drawString("Contact: ollymeansoliveira@gmail.com", panelWidth / 2 - 120, panelHeight - 40); // 40px from the bottom
+            g.drawString("Phone: +264818696891", panelWidth / 2 - 80, panelHeight - 20); // 20px from the bottom
         }
     }
 
