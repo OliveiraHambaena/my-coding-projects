@@ -116,7 +116,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         int buttonWidth = 100;
         int buttonHeight = 40;
         int buttonX = (panelWidth - buttonWidth) / 2;
-        int buttonY = (panelHeight - buttonHeight) / 2;
+        int buttonY = (panelHeight - buttonHeight) / 2 + 50; // Move the button slightly below the center
 
         startButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
         restartButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
@@ -152,8 +152,8 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            g.drawString("GAME OVER", panelWidth / 2 - 100, panelHeight / 2 - 50);
-            g.drawString("Final Score: " + score, panelWidth / 2 - 100, panelHeight / 2);
+            g.drawString("GAME OVER", panelWidth / 2 - 100, panelHeight / 2 - 100); // Move text slightly above the center
+            g.drawString("Final Score: " + score, panelWidth / 2 - 100, panelHeight / 2 - 50); // Move score text slightly above the button
         }
     }
 
