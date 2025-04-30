@@ -206,8 +206,8 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
         // Spawn new obstacles
         if (random.nextInt(spawnChance) < 2) { // Dynamic spawn chance
-            int obstacleX = random.nextInt(panelWidth - 50);
-            obstacles.add(new Rectangle(obstacleX, 0, 50, 30));
+            int obstacleX = random.nextInt(panelWidth - 40); // Adjust for smaller obstacle width
+            obstacles.add(new Rectangle(obstacleX, 0, 40, 20)); // Smaller obstacle size
         }
 
         repaint();
