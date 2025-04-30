@@ -33,17 +33,46 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private boolean isUnstoppable = false;
     private Timer unstoppableTimer; // Timer to deactivate unstoppable mode
 
+    // Add a variable to store the high score
+    private int highScore = 0;
+
     public TrafficGame(JFrame frame) {
         this.frame = frame; // Store the frame reference
         setLayout(null); // For absolute positioning
 
-        // Start Button
+        // Create the menu bar
+        JMenuBar menuBar = new JMenuBar();
+
+        // Create the Game menu
+        JMenu gameMenu = new JMenu("Game");
+
+        // Add Restart menu item
+        JMenuItem restartMenuItem = new JMenuItem("Restart");
+        restartMenuItem.addActionListener(e -> restartGame());
+        gameMenu.add(restartMenuItem);
+
+        // Add View High Score menu item
+        JMenuItem highScoreMenuItem = new JMenuItem("View High Score");
+        highScoreMenuItem.addActionListener(e -> JOptionPane.showMessageDialog(
+            frame,
+            "High Score: " + highScore,
+            "High Score",
+            JOptionPane.INFORMATION_MESSAGE
+        ));
+        gameMenu.add(highScoreMenuItem);
+
+        // Add the Game menu to the menu bar
+        menuBar.add(gameMenu);
+
+        // Set the menu bar to the frame
+        frame.setJMenuBar(menuBar);
+
+        // Initialize buttons and other components
         startButton = new JButton("START");
         startButton.setBounds(250, 200, 100, 40);
         startButton.addActionListener(e -> startGame());
         add(startButton);
 
-        // Restart Button
         restartButton = new JButton("RESTART");
         restartButton.setBounds(250, 200, 100, 40);
         restartButton.addActionListener(e -> restartGame());
@@ -171,6 +200,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             g.drawString("GAME OVER", panelWidth / 2 - 100, panelHeight / 2 - 100); // Move text slightly above the center
             g.drawString("Final Score: " + score, panelWidth / 2 - 100, panelHeight / 2 - 50); // Move score text slightly above the button
 
+            // Update high score
+            if (score > highScore) {
+                highScore = score;
+            }
 
             // Add personal information at the bottom
             g.setColor(Color.BLACK);
@@ -242,7 +275,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         }
 
         // Spawn a rare gold obstacle
-        if (random.nextInt(500) == 0) { // 1 in 500 chance
+        if (random.nextInt(5000) == 0) { // 1 in 5000 chance
             int goldObstacleX = random.nextInt(panelWidth - 40);
             obstacles.add(new Rectangle(goldObstacleX, 0, 40, 40)); // Gold obstacle size
         }
