@@ -47,7 +47,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         JMenuBar menuBar = new JMenuBar();
 
         // Create the Game menu
-        JMenu gameMenu = new JMenu("Game");
+        JMenu gameMenu = new JMenu("MENU");
 
         // Add Restart menu item
         JMenuItem restartMenuItem = new JMenuItem("Restart");
