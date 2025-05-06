@@ -19,7 +19,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     private JButton startButton, restartButton;
 
-    private int obstacleSpeed = 5;
+    private int obstacleSpeed = 5; // Initial speed of obstacles
     private int spawnChance = 100; // Initial spawn chance (1 in 100)
 
     // Add a variable to track lives
