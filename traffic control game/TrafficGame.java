@@ -19,7 +19,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     private JButton startButton, restartButton;
 
-    private int obstacleSpeed = 5; // Initial speed of obstacles
+    private int obstacleSpeed = 5;
     private int spawnChance = 100; // Initial spawn chance (1 in 100)
 
     // Add a variable to track lives
@@ -62,11 +62,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         highScoreMenuItem.addActionListener(e -> {
             pauseGame(); // Pause the game when the menu is opened
             JOptionPane.showMessageDialog(
-                frame,
-                "High Score: " + highScore,
-                "High Score",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    frame,
+                    "High Score: " + highScore,
+                    "High Score",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
         gameMenu.add(highScoreMenuItem);
 
@@ -86,17 +85,16 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         instructionsMenuItem.addActionListener(e -> {
             pauseGame(); // Pause the game when the menu is opened
             JOptionPane.showMessageDialog(
-                frame,
-                "Instructions:\n" +
-                "- Use LEFT and RIGHT arrow keys to move the car.\n" +
-                "- Avoid red obstacles.\n" +
-                "- Collect gold obstacles for unstoppable mode (15 seconds).\n" +
-                "- Press SPACE to pause/unpause the game.\n" +
-                "- Press ENTER to start or restart the game.\n" +
-                "- Press F11 to toggle full-screen mode.",
-                "How to Play",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    frame,
+                    "Instructions:\n" +
+                            "- Use LEFT and RIGHT arrow keys to move the car.\n" +
+                            "- Avoid red obstacles.\n" +
+                            "- Collect gold obstacles for unstoppable mode (15 seconds).\n" +
+                            "- Press SPACE to pause/unpause the game.\n" +
+                            "- Press ENTER to start or restart the game.\n" +
+                            "- Press F11 to toggle full-screen mode.",
+                    "How to Play",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
         helpMenu.add(instructionsMenuItem);
 
@@ -142,8 +140,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         restartButton.setVisible(false);
 
         // Stop existing timers if any
-        if (gameTimer != null) gameTimer.stop();
-        if (difficultyTimer != null) difficultyTimer.stop();
+        if (gameTimer != null)
+            gameTimer.stop();
+        if (difficultyTimer != null)
+            difficultyTimer.stop();
 
         // Game timer (~60fps)
         gameTimer = new Timer(16, this);
@@ -164,8 +164,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     private void stopGame() {
         isGameRunning = false;
-        if (gameTimer != null) gameTimer.stop();
-        if (difficultyTimer != null) difficultyTimer.stop();
+        if (gameTimer != null)
+            gameTimer.stop();
+        if (difficultyTimer != null)
+            difficultyTimer.stop();
         restartButton.setVisible(true);
     }
 
@@ -175,7 +177,8 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         // Decrease spawn chance (minimum value is 10)
         spawnChance = Math.max(10, spawnChance - 10);
 
-        System.out.println("Difficulty increased: obstacleSpeed=" + obstacleSpeed + ", spawnChance=1 in " + spawnChance);
+        System.out
+                .println("Difficulty increased: obstacleSpeed=" + obstacleSpeed + ", spawnChance=1 in " + spawnChance);
     }
 
     @Override
@@ -237,8 +240,11 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            g.drawString("GAME OVER", panelWidth / 2 - 100, panelHeight / 2 - 100); // Move text slightly above the center
-            g.drawString("Final Score: " + score, panelWidth / 2 - 100, panelHeight / 2 - 50); // Move score text slightly above the button
+            g.drawString("GAME OVER", panelWidth / 2 - 100, panelHeight / 2 - 100); // Move text slightly above the
+                                                                                    // center
+            g.drawString("Final Score: " + score, panelWidth / 2 - 100, panelHeight / 2 - 50); // Move score text
+                                                                                               // slightly above the
+                                                                                               // button
 
             // Update high score
             if (score > highScore) {
@@ -249,14 +255,16 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             g.setColor(Color.BLACK);
             g.setFont(new Font("Arial", Font.PLAIN, 15));
             g.drawString("Made by Olly", panelWidth / 2 - 50, panelHeight - 60); // 60px from the bottom
-            g.drawString("Contact: ollymeansoliveira@gmail.com", panelWidth / 2 - 120, panelHeight - 40); // 40px from the bottom
+            g.drawString("Contact: ollymeansoliveira@gmail.com", panelWidth / 2 - 120, panelHeight - 40); // 40px from
+                                                                                                          // the bottom
             g.drawString("Phone: +264818696891", panelWidth / 2 - 80, panelHeight - 20); // 20px from the bottom
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!isGameRunning || isGamePaused) return;
+        if (!isGameRunning || isGamePaused)
+            return;
 
         // Get the current panel dimensions
         int panelWidth = getWidth();
@@ -269,8 +277,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         playerX += playerVelocityX;
 
         // Prevent the player from moving out of bounds
-        if (playerX < 0) playerX = 0;
-        if (playerX > panelWidth - 50) playerX = panelWidth - 50;
+        if (playerX < 0)
+            playerX = 0;
+        if (playerX > panelWidth - 50)
+            playerX = panelWidth - 50;
 
         // Move obstacles
         Iterator<Rectangle> iterator = obstacles.iterator();
@@ -343,38 +353,49 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     // Add a method to toggle pause
     private void togglePauseGame() {
-        if (!isGameRunning) return;
+        if (!isGameRunning)
+            return;
 
         isGamePaused = !isGamePaused;
         if (isGamePaused) {
             System.out.println("Game paused.");
-            if (gameTimer != null) gameTimer.stop();
-            if (difficultyTimer != null) difficultyTimer.stop();
+            if (gameTimer != null)
+                gameTimer.stop();
+            if (difficultyTimer != null)
+                difficultyTimer.stop();
         } else {
             System.out.println("Game resumed.");
-            if (gameTimer != null) gameTimer.start();
-            if (difficultyTimer != null) difficultyTimer.start();
+            if (gameTimer != null)
+                gameTimer.start();
+            if (difficultyTimer != null)
+                difficultyTimer.start();
         }
     }
 
     // Add a method to pause the game
     private void pauseGame() {
-        if (!isGameRunning || isGamePaused) return;
+        if (!isGameRunning || isGamePaused)
+            return;
 
         isGamePaused = true;
         System.out.println("Game paused.");
-        if (gameTimer != null) gameTimer.stop();
-        if (difficultyTimer != null) difficultyTimer.stop();
+        if (gameTimer != null)
+            gameTimer.stop();
+        if (difficultyTimer != null)
+            difficultyTimer.stop();
     }
 
     // Add a method to resume the game
     private void resumeGame() {
-        if (!isGameRunning || !isGamePaused) return;
+        if (!isGameRunning || !isGamePaused)
+            return;
 
         isGamePaused = false;
         System.out.println("Game resumed.");
-        if (gameTimer != null) gameTimer.start();
-        if (difficultyTimer != null) difficultyTimer.start();
+        if (gameTimer != null)
+            gameTimer.start();
+        if (difficultyTimer != null)
+            difficultyTimer.start();
     }
 
     // Add a method to toggle full-screen mode
@@ -420,11 +441,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                 if (isGamePaused) {
                     // Resume the game immediately after closing the dialog
                     JOptionPane.showMessageDialog(
-                        frame,
-                        "Game Paused\nPress OK to resume.",
-                        "Pause Menu",
-                        JOptionPane.INFORMATION_MESSAGE
-                    );
+                            frame,
+                            "Game Paused\nPress OK to resume.",
+                            "Pause Menu",
+                            JOptionPane.INFORMATION_MESSAGE);
                     togglePauseGame(); // Resume the game after the dialog is closed
                 } else {
                     togglePauseGame(); // Pause the game
@@ -432,7 +452,8 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             }
         }
 
-        if (!isGameRunning || isGamePaused) return;
+        if (!isGameRunning || isGamePaused)
+            return;
 
         // Dynamically adjust movement speed based on score
         int baseSpeed = 10; // Base speed
@@ -440,8 +461,10 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         int movementSpeed = baseSpeed + speedIncrement;
 
         // Set velocity based on key press
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) playerVelocityX = -movementSpeed;
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) playerVelocityX = movementSpeed;
+        if (e.getKeyCode() == KeyEvent.VK_LEFT)
+            playerVelocityX = -movementSpeed;
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            playerVelocityX = movementSpeed;
     }
 
     @Override
@@ -469,5 +492,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         game.requestFocusInWindow(); // Important for immediate key response
     }
 
-    @Override public void keyTyped(KeyEvent e) {}
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
 }
