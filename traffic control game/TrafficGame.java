@@ -250,7 +250,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                 highScore = score;
             }
 
-            // Add personal information at the bottom
+            // Add personal information
             g.setColor(Color.BLACK);
             g.setFont(new Font("Arial", Font.PLAIN, 15));
             g.drawString("Made by Olly", panelWidth / 2 - 50, panelHeight - 60); // 60px from the bottom
