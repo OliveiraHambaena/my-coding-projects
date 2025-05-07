@@ -401,7 +401,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private void toggleFullScreen() {
         GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         if (isFullScreen) {
-            // Switch to windowed mode
+            //  windowed mode
             frame.dispose();
             frame.setUndecorated(false);
             frame.setVisible(true);
