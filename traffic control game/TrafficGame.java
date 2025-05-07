@@ -245,7 +245,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                                                                                                // slightly above the
                                                                                                // button
 
-            // Update high score
+            // Update the high score
             if (score > highScore) {
                 highScore = score;
             }
