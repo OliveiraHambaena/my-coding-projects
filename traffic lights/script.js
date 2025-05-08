@@ -23,7 +23,7 @@ const redLight = document.getElementById('redLight');
                         activateLight(yellowLight);
                         setTimeout(() => {
                             deactivateLight(yellowLight);
-                            cycleLights(); // Restart the cycle
+                            cycleLights(); // Restart
                         }, 1000); // YL time
                     }, 2000); // Green light duration
                 }, 1000);  // Yellow light duration
