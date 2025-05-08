@@ -27,7 +27,7 @@ const redLight = document.getElementById('redLight');
                         }, 1000); // YL time
                     }, 2000); // GL time
                 }, 1000);  // YL time
-            }, 3000); // Red light duration
+            }, 3000); // RL time
         }
 
         cycleLights(); // Start the traffic light cycle
