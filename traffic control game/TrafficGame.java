@@ -73,7 +73,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         pauseMenuItem.addActionListener(e -> togglePauseGame());
         gameMenu.add(pauseMenuItem);
 
-        // Add the Game menu to the menu bar
+        // Add the Game menu to the menu ba
         menuBar.add(gameMenu);
 
         // Create the Help menu
