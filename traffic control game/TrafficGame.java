@@ -14,7 +14,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private int score = 0;
     private boolean isGameRunning = false;
 
-    private ArrayList<Rectangle> obstacles; // List of obstacles
+    private ArrayList<Rectangle> obstacles; // List of obstacle
     private Random random;
 
     private JButton startButton, restartButton;
