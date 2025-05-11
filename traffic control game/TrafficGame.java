@@ -97,7 +97,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         });
         helpMenu.add(instructionsMenuItem);
 
-        // Add the Help menu to the menu bar
+        // Add the Help menu to the menu ba
         menuBar.add(helpMenu);
 
         // Set the menu bar to the frame
