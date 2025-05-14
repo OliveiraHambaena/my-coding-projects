@@ -16,21 +16,10 @@ function NavBar() {
       <div className="nav-brand">
         <Link to="/">Movie App</Link>
       </div>
-      <div className="nav-links">
-        {user ? (
-          <>
-            <Link to="/">Home</Link>
-            <Link to="/favorites">Favorites</Link>
-            <button onClick={handleLogout} className="logout-button">
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-          </>
-        )}
+      <div className="navbar-links">
+        <Link to="/">Home</Link>
+        <Link to="/favorites">Favorites</Link>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </nav>
   );

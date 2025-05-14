@@ -1,0 +1,5 @@
+.navbar-links {
+  display: flex;
+  gap: 24px; /* Adjust the spacing as needed */
+  align-items: center;
+}

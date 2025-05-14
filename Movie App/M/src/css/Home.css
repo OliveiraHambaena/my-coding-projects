@@ -61,3 +61,21 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+/* Add this to Home.css for a simple modal effect */
+.trailer-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.trailer-modal button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
