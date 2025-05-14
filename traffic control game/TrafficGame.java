@@ -173,7 +173,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     }
 
     private void increaseDifficulty() {
-        // Increase obstacle speed
+        // obstacle speed Increase
         obstacleSpeed++;
         // Decrease spawn chance (minimum value is 10)
         spawnChance = Math.max(10, spawnChance - 10);
