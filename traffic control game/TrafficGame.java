@@ -194,7 +194,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         int buttonWidth = 100;
         int buttonHeight = 40;
         int buttonX = (panelWidth - buttonWidth) / 2;
-        int buttonY = (panelHeight - buttonHeight) / 2 + 50; // Move the button slightly below the center
+        int buttonY = (panelHeight - buttonHeight) / 2 + 50;
 
         startButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
         restartButton.setBounds(buttonX, buttonY, buttonWidth, buttonHeight);
