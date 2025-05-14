@@ -234,7 +234,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             }
         }
 
-        // Game over screen
+        // Game over
         if (!isGameRunning && score > 0) {
             g.setColor(new Color(255, 255, 255, 200));
             g.fillRect(0, 0, panelWidth, panelHeight);
