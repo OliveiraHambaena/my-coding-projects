@@ -149,7 +149,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         gameTimer = new Timer(16, this);
         gameTimer.start();
 
-        // Difficulty timer (adjusts every 5 seconds)
+        // Difficulty timer (increment every 5 seconds)
         difficultyTimer = new Timer(5000, e -> increaseDifficulty());
         difficultyTimer.start();
 
