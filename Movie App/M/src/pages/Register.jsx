@@ -30,7 +30,9 @@ function Register() {
       setLoading(true);
       const result = await register(email, password);
       if (result.success) {
-        setMessage("Registration successful! Please check your email for verification.");
+        setMessage(
+          "Registration successful! Please check your email for verification."
+        );
         // Don't navigate immediately as user needs to verify email
       } else {
         setError(result.error);
@@ -88,4 +90,4 @@ function Register() {
   );
 }
 
-export default Register; 
+export default Register;
