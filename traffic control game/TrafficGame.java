@@ -218,7 +218,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                 g.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
             }
 
-            // Draw the scores
+            // Draw player scores
             g.setColor(Color.WHITE);
             g.setFont(new Font("Arial", Font.BOLD, 20));
             g.drawString("Score: " + score, 20, 30);
