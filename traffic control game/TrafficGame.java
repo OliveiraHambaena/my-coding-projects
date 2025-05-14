@@ -162,6 +162,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         startGame();
     }
 
+    // Method to stop the game
     private void stopGame() {
         isGameRunning = false;
         if (gameTimer != null)
