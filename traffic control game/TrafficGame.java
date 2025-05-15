@@ -36,7 +36,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     // Add a variable to store the high score
     private int highScore = 0;
 
-    // Add a variable to track if the game is stopped or paused
+    // Add a variable to track if the game is paused
     private boolean isGamePaused = false;
 
     public TrafficGame(JFrame frame) {
