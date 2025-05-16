@@ -298,7 +298,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             // Check for collision
             if (obstacle.intersects(new Rectangle(playerX, playerY, 50, 30))) {
                 if (isUnstoppable) {
-                    iterator.remove(); // Remove the obstacle without losing
+                    iterator.remove(); // Remove the obstacle without losing lives
                     continue;
                 }
 
