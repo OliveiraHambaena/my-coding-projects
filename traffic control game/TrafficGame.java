@@ -287,7 +287,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         Iterator<Rectangle> iterator = obstacles.iterator();
         while (iterator.hasNext()) {
             Rectangle obstacle = iterator.next();
-            obstacle.y += obstacleSpeed; // Move obstacle down based on speed
+            obstacle.y += obstacleSpeed; // Move obstacle down based on
 
             // Remove obstacle if it goes off-screen
             if (obstacle.y > panelHeight) {
