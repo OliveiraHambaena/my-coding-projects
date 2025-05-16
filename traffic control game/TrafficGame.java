@@ -277,7 +277,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         // Update player position based on velocity
         playerX += playerVelocityX;
 
-        // Prevent the player from moving out of
+        // Prevent the player from moving out of bounds
         if (playerX < 0)
             playerX = 0;
         if (playerX > panelWidth - 50)
