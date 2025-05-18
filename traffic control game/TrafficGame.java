@@ -310,7 +310,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                 }
 
                 iterator.remove(); // Remove the obstacle
-                lives--; // Remove lives
+                lives--; // Decrement lives
                 System.out.println("Collision! Lives remaining: " + lives);
 
                 if (lives <= 0) {
