@@ -314,7 +314,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                 System.out.println("Collision! Lives remaining: " + lives);
 
                 if (lives <= 0) {
-                    stopGame(); // End the game if no lives are left
+                    stopGame(); // End the game if =0 lives
                 }
             }
         }
