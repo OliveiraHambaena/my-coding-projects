@@ -302,7 +302,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                     continue;
                 }
 
-                // Check if it's a gold obstacl
+                // Check if it's a gold obstacle
                 if (obstacle.width == 40 && obstacle.height == 40) { // Gold obstacle dimensions
                     activateUnstoppableMode();
                     iterator.remove();
