@@ -7,6 +7,7 @@ This is a React-based movie application that allows users to browse popular movi
 - **Browse Popular Movies**: Displays a list of trending movies fetched from TMDb.
 - **Search Movies by Title**: Enter a movie title to search for specific movies.
 - **Favorites Management**: Add movies to a favorites list and view them on a dedicated page.
+- **Watch YouTube Trailers**: View official YouTube trailers for movies directly in the app.
 - **Responsive Design**: Optimized for various screen sizes.
 
 ## Technologies Used
@@ -24,8 +25,8 @@ This is a React-based movie application that allows users to browse popular movi
    git clone https://github.com/OliveiraHambaena/my-coding-projects.git
    cd "Movie App/M"
    ```
-2.**Install Dependencies**:
-npm install
+   2.**Install Dependencies**:
+   npm install
 
 3.**Start the Development Server**:
 npm run dev
@@ -44,8 +45,8 @@ npm run preview
 - Add support for filtering movies by genre or release year.
 - Add torents.
 
-
 ## Contact
+
 If you have any questions or suggestions, feel free to reach out:
 
 Email: ollymeansoliveira@gmail.com
@@ -53,4 +54,5 @@ Phone: +264 81 869 6891
 Location: Windhoek, Namibia
 
 ## License
+
 This project is licensed under the MIT License. Feel free to use and modify it as needed.
