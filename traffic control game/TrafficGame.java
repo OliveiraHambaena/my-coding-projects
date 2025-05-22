@@ -343,7 +343,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             unstoppableTimer.stop();
         }
 
-        // Start a new timer for 15 seconds
+        // Start a new timer for
         unstoppableTimer = new Timer(15000, e -> {
             isUnstoppable = false;
             System.out.println("Unstoppable mode deactivated!");
