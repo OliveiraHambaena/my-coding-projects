@@ -39,7 +39,6 @@ npm run preview
 
 ## Future Enhancements
 
-- Allow to view movie trailers and reviews.
 - Implement user authentication for personalized features.
 - Allow users to rate movies and leave reviews.
 - Add support for filtering movies by genre or release year.
