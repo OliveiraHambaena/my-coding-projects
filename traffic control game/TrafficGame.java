@@ -326,7 +326,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         }
 
         // Spawn a rare gold obstacle
-        if (random.nextInt(5000) == 0) { // 1 in 5000
+        if (random.nextInt(5000) == 0) { // 1 in 5000 chance
             int goldObstacleX = random.nextInt(panelWidth - 40);
             obstacles.add(new Rectangle(goldObstacleX, 0, 40, 40)); // Gold obstacle size
         }
