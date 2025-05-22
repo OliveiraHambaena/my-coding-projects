@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="traffic control game">
+    <output-path>$PROJECT_DIR$/../../../../Desktop/trafficgame</output-path>
+    <root id="archive" name="traffic control game.jar">
+      <element id="module-output" name="traffic control game" />
+    </root>
+  </artifact>
+</component>
