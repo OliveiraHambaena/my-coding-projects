@@ -31,7 +31,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     // Add a variable to track unstoppable mode
     private boolean isUnstoppable = false;
-    private Timer unstoppableTimer; // Timer to deactivate unstoppable mode
+    private Timer unstoppableTimer; // Timer to deactivate unstoppable mo
 
     // Add a variable to store the high score
     private int highScore = 0;
