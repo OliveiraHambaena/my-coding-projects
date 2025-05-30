@@ -27,7 +27,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     // Add a variable to track full-screen mode
     private boolean isFullScreen = false;
-    private JFrame frame; // Reference to the main frame
+    private JFrame frame; // Reference to the main fra
 
     // Add a variable to track unstoppable mode
     private boolean isUnstoppable = false;
