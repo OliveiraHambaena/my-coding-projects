@@ -68,7 +68,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         });
         gameMenu.add(highScoreMenuItem);
 
-        // Add Pause/Resume menu i
+        // Add Pause/Resume menu item
         JMenuItem pauseMenuItem = new JMenuItem("Pause/Resume");
         pauseMenuItem.addActionListener(e -> togglePauseGame());
         gameMenu.add(pauseMenuItem);
