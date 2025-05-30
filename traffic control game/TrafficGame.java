@@ -41,7 +41,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
 
     public TrafficGame(JFrame frame) {
         this.frame = frame; // Store the frame reference
-        setLayout(null); // For absolute position
+        setLayout(null); // For absolute positioning
 
         // Create the menu bar
         JMenuBar menuBar = new JMenuBar();
