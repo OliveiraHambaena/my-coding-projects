@@ -51,7 +51,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         // Add Restart menu item
         JMenuItem restartMenuItem = new JMenuItem("Restart");
         restartMenuItem.addActionListener(e -> {
-            pauseGame(); // Pause the game when the menu is ope
+            pauseGame(); // Pause the game when the menu is opened
             restartGame();
         });
         gameMenu.add(restartMenuItem);
