@@ -103,7 +103,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         // Set the menu bar to the frame
         frame.setJMenuBar(menuBar);
 
-        // Initialize buttons and other components
+        // Initialize buttons and other com
         startButton = new JButton("START");
         startButton.setBounds(250, 200, 100, 40);
         startButton.addActionListener(e -> startGame());
