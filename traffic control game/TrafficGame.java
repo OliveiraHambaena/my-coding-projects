@@ -154,7 +154,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         difficultyTimer.start();
 
         System.out.println("Game timer started."); // Debugging
-        requestFocusInWindow(); // Crucial for key lis
+        requestFocusInWindow(); // Crucial for key listeners
     }
 
     private void restartGame() {
