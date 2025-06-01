@@ -135,7 +135,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         lives = 3; // Reset lives
         isUnstoppable = false; // Reset unstoppable mode
 
-        isGamePaused = false; // Reset paused st
+        isGamePaused = false; // Reset paused state
         startButton.setVisible(false);
         restartButton.setVisible(false);
 
