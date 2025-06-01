@@ -123,7 +123,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     }
 
     private void startGame() {
-        System.out.println("Game started!"); // Debugging
+        System.out.println("Game started!"); // Debugg
         isGameRunning = true;
         score = 0;
         playerX = 250;
