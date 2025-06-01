@@ -132,7 +132,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         obstacles.clear();
         obstacleSpeed = 5; // Reset obstacle speed
         spawnChance = 100; // Reset spawn chance
-        lives = 3; // Reset
+        lives = 3; // Reset lives
         isUnstoppable = false; // Reset unstoppable mode
 
         isGamePaused = false; // Reset paused state
