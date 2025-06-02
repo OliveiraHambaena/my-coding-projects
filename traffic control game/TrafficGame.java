@@ -154,7 +154,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
         difficultyTimer.start();
 
         System.out.println("Game timer started."); // Debugging
-        requestFocusInWindow(); // Crucial for key listeners
+        requestFocusInWindow(); // Crucial for key listeners       
     }
 
     private void restartGame() {
@@ -213,7 +213,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                 if (obstacle.width == 40 && obstacle.height == 40) {
                     g.setColor(Color.YELLOW); // Gold obstacle
                 } else {
-                    g.setColor(Color.RED); // Regular obstacle
+                    g.setColor(Color.RED); // Regular obst
                 }
                 g.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
             }
