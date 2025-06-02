@@ -223,7 +223,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
             g.setFont(new Font("Arial", Font.BOLD, 20));
             g.drawString("Score: " + score, 20, 30);
 
-            // Draw live
+            // Draw lives
             g.drawString("Lives: " + lives, 20, 60);
 
             // Indicate unstoppable mode
