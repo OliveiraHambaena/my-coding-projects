@@ -213,7 +213,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
                 if (obstacle.width == 40 && obstacle.height == 40) {
                     g.setColor(Color.YELLOW); // Gold obstacle
                 } else {
-                    g.setColor(Color.RED); // Regular
+                    g.setColor(Color.RED); // Regular o
                 }
                 g.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
             }
