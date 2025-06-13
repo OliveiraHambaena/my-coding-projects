@@ -23,7 +23,7 @@ public class TrafficGame extends JPanel implements ActionListener, KeyListener {
     private int spawnChance = 100; // Initial spawn chance (1 in 100)
 
     // Add a variable to track lives
-    private int lives = 3; // 3 lives for play
+    private int lives = 3; // 3 lives for pla
 
     // Add a variable to track full-screen mode
     private boolean isFullScreen = false;
